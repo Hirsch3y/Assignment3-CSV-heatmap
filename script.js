@@ -22,7 +22,7 @@ const renderer = {type: "heatmap",colorStops: [
           minPixelIntensity: 0
         };
 
-const layer = new CSVLayer({url: url, title: "St. Louis Crime Heatmap", copyright: "St. Louis Police Department",latitudeField:"Lat",longitudeField:"Lon",popupTemplate: template,renderer: renderer});
+const layer = new CSVLayer({url: url, title: "St. Louis Crime Heatmap", copyright: "St. Louis Police Department",latitudeField:"Latitude",longitudeField:"Longitude",popupTemplate: template,renderer: renderer});
 
 const map = new Map({basemap: "gray-vector",layers: [layer]});
 
