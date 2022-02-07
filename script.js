@@ -1,17 +1,9 @@
-      require([
-        "esri/Map",
-        "esri/layers/CSVLayer",
-        "esri/views/MapView",
-        "esri/widgets/Legend"
-      ], (Map, CSVLayer, MapView, Legend) => {
-        const url = "https://raw.githubusercontent.com/gbrunner/adv-programming-for-gis-and-rs/master/Web%20Development%20Module/Unit%202%20-%20ArcGIS%20JavaScript%20API/stl_crime_wgs_84.csv";
+require(["esri/Map", "esri/layers/CSVLayer","esri/views/MapView","esri/widgets/Legend"], (Map, CSVLayer, MapView, Legend) => 
+{const url = "https://raw.githubusercontent.com/gbrunner/adv-programming-for-gis-and-rs/master/Web%20Development%20Module/Unit%202%20-%20ArcGIS%20JavaScript%20API/stl_crime_wgs_84.csv";
       
-            const template = {
-   title: "Crime committed at {ILEADSStreet}"
-};
-              const renderer = {
-          type: "heatmap",
-          colorStops: [
+const template = {title: "Crime committed at {ILEADSStreet}"};
+ 
+const renderer = {type: "heatmap",colorStops: [
             { color: "rgba(63, 40, 102, 0)", ratio: 0 },
             { color: "#0052cc", ratio: 0.083 },
             { color: "#0066ff", ratio: 0.166 },
@@ -30,32 +22,15 @@
           minPixelIntensity: 0
         };
 
-        const layer = new CSVLayer({
-        url: url,
-        title: "St. Louis Crime Heatmap",
-        copyright: "St. Louis Police Department",
-		latitudeField:"Lat",
-        longitudeField:"Lon",
-		popupTemplate: template,
-		renderer: renderer
-});
+const layer = new CSVLayer({url: url, title: "St. Louis Crime Heatmap", copyright: "St. Louis Police Department",latitudeField:"Lat",longitudeField:"Lon",popupTemplate: template,renderer: renderer});
 
-        const map = new Map({
-          basemap: "gray-vector",
-          layers: [layer]
-        });
+const map = new Map({basemap: "gray-vector",layers: [layer]});
 
-        const view = new MapView({
+const view = new MapView({
           container: "viewDiv",
           center: [-90.1994, 38.6270],
           zoom: 12,
           map: map
-        });
-
-        view.ui.add(
-          new Legend({
-            view: view
-          }),
-          "bottom-left"
-        );
+      });
+view.ui.add(new Legend({view: view}),"bottom-left");
       });
